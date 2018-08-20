@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" 
+       content="width=device-width, initial-scale=1.0">
+    <title>Ch15-07</title>
+    <script src="http://maps.googleapis.com/maps/api/js"></script>
+    <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script>
+    $(function(){
+      // 建立地圖物件, 只設定 zoom 和 center
+      new google.maps.Map(document.getElementById("map_1"), {
+         zoom: 13,
+         center: new google.maps.LatLng(25.08,121.24)
+      });
+      
+      // 建立地圖物件並存於變數, 加上其它地圖選項
+      var m2=new google.maps.Map($("#map_2").get(0), {
+         zoom: 12,
+         center: {lat: 35.77, lng: 140.38},
+         mapTypeId: google.maps.MapTypeId.HYBRID,  // 衛星加地名
+         mapTypeControl: false,   // 不顯示地圖種類選擇介面
+         draggable: false         // 不可拖曳  
+      });
+    });
+    </script>
+    <style>  .left {float:left;margin:3px;} </style>
+  </head>
+  <body>
+  <div class="left">
+    <h3>桃園機場</h3>
+    <div id="map_1" style="width:400px; height:300px"></div>
+  </div>
+  <div class="left">
+    <h3>成田機場</h3>
+    <div id="map_2" style="width:400px; height:300px"></div>
+  </div>
+  </body>
+</html>

@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+<head>
+  <meta name="viewport" 
+        content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <title>Ch16-10</title>
+  <link rel="stylesheet" 
+    href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+  <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+  <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+  <script>
+  $(function(){
+    // 註冊方向改變事件
+    $(window).on("orientationchange", function(e) {
+      // 若為橫向
+      if (e.orientation=="landscape") {
+        $('img').css('width','30%');
+      } 
+      // 若為直向
+      else {
+        $('img').css('width','60%');
+      }
+    });
+    
+    // 文件載入時即觸發一次方向改變事件
+    $(window).orientationchange();
+  });
+  </script>
+  <style>
+    img {float:left; margin:0 5px}
+  </style>
+</head>
+<body>
+<div data-role="page">
+  <div data-role="header">
+    <h1>Apple Watch 酷樂誌</h1>
+  </div>
+  <div data-role="content">
+    <img src="https://www.flag.com.tw/images/cover/middle/F5186.gif">
+    <p>發揮 Apple Watch 120 % 功能, 與 iPhone 完美互動, 成為生活、工作最佳助手！</p>
+  </div>
+  <div data-role="footer">
+    <em>&nbsp; &copy; www.flag.com.tw</em>
+  </div>
+</div>
+</body>
+</html>

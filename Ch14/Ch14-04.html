@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ch14-04</title>
+	<script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script>
+    // 在文件 Ready 後, 就開始載入 XML
+    $(function(){        
+        // 用 get() 載入測試用 XML
+        $.get('http://httpbin.org/xml',
+            function(xml){
+                // 找出 slide 元素, 並針對各元素做處理
+                $(xml).find('slide').each(function(){
+                    // 建立 <li>...</li> 內容
+                    var li=$('<li></li>').text( 
+                                $(this).find('title').text());
+                    
+                    // 若 slide 元素下還有 item 子元素
+                    // 將其內容建立成 ul 清單
+                    if($(this).find('item').length>0){
+                      var ul=$('<ul></ul>');
+                      $(this).find('item').each(function(){
+                        // 如果 item 內容是空字串就略過
+                        // 不是空字串就建立 ul 清單中的 li 元素
+                        if( $(this).text() != ''){
+                          ul.append(
+                             $('<li>' + $(this).text() + '</li>'));
+                        }
+                      });
+                      li.append(ul);  // 將 ul 清單附加成巢狀清單 
+                    }
+                    
+                    // 將 li 附加到網頁的清單元素中
+                    $('#list').append(li);
+                });
+            }
+        );
+    });
+    </script>
+    <style> #list {border:1px dotted black} </style>
+</head>
+
+<body>
+<h3>載入XML練習</h3>
+<!-- 用來放置 XML 資料的清單元素 -->
+<ol id="list"></ol>
+</body>
+</html>

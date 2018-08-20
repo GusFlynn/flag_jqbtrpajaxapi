@@ -1,0 +1,81 @@
+<!doctype html>
+<html>
+    <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ch15-06</title>
+    <style>
+      div {padding:0px 5px;
+           border:1px solid black;      
+           width:fit-content;
+           width:-moz-fit-content}
+      span {font-style:bold; margin:5px}
+      code {font-size:1.2em}
+    </style>
+    <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script>
+    // 建立地圖 URL 的前半段
+    var mapUrl = 'https://maps.googleapis.com/maps/api/staticmap?zoom=10&size=480x320&center=雲林縣';
+    
+    $(function(){              
+        // 用 ajax() 以 JSONP 方式取得資料
+        $.ajax({         // 空氣品質即時污染指標網址    
+          url:'http://opendata.epa.gov.tw/webapi/api/rest/datastore/355000000I-000001/?format=json',
+          dataType:'jsonp',
+          success : onSuccess,  // 成功時呼叫自訂函式 onSuccess()
+		  error  : function(e){
+              console.log('錯誤, 代碼:'+e.status);
+          }
+        });
+    });
+	
+    // $.ajax() 成功時執行的函式 
+	function onSuccess(data){  
+	  if (data == null) {     // 要求成功, 但沒有資料, 
+         alert("下載失敗!");  // 會顯示訊息
+         return;
+      }
+	  
+      // 逐筆處理陣列中的資料
+      $.each(data.result.records, function(index){
+        if(this.County=='雲林縣') {    // 範例程式僅處理雲林縣的資料
+          // 開始建立 markers 參數字串
+          var markerStr = '&markers=color:'
+          
+          var pm25 = this["PM2.5"];   // 取得 PM2.5 濃度值
+          
+          // 依濃度值的範圍, 指定不同的顏色名稱
+          if(pm25>=71)  // 若濃度大於等於 71,  使用紫色 
+            markerStr += 'purple|';   // 顏色名稱後要加分隔符號 |
+                                      // 以便再串接測站名稱及縣市名
+          else if(pm25>54)  // 若濃度大於 54,  使用紅色
+            markerStr += 'red|'; 
+          else if(pm25>35)  // 若濃度大於 35,  使用橘色
+            markerStr += 'orange|';
+          else              // 濃度小於等於 35,  使用綠色
+            markerStr += 'green|';
+          
+          // 後面串接測站名稱及縣市名 (標記的位置)
+          markerStr += this.SiteName + ',' + this.County;
+          
+          mapUrl += markerStr;  // 將參數字串附加到地圖 URL 後面
+        }
+      }); // END OF $.each() 
+      
+      // 立即顯示地圖
+      $('#pm25').attr('src', mapUrl);
+    } 
+    </script>
+    </head>
+    <body>
+      <img id="pm25" alt="載入資料中...">  <!-- img 用來載入 Google Maps 地圖-->
+      
+      <div>
+          <p>細懸浮微粒PM 2.5濃度指標：</p>
+          <p><span style="color:green">● 低</span>
+          <span style="color:orange">● 中</span>
+          <span style="color:red">● 高</span>
+          <span style="color:purple">● 非常高</span></p>
+      </div>
+    </body>
+</html>

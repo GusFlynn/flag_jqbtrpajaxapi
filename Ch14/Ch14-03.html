@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ch14-03</title>
+	<script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script>
+    $(function(){
+        // 建立空的表格元素
+        var table = $('<table border="1"></table>');  
+    
+        // 網頁載入時, 就
+        // 用 getJSON() 載入含HTTP表頭資訊的 JSON 物件
+        $.getJSON('http://httpbin.org/headers',
+                  function(data){
+                    // 利用 $.each() 逐一處理物件中屬性
+                    $.each(data.headers, function(property, value){
+                       // 建立 th 元素物件, 並放入屬性名稱
+                       var th = $('<th></th>').text(property);
+                       
+                       // 建立 td 元素物件, 並放入屬性值
+                       var td = $('<td></td>').text(value);
+                       
+                       // 建立 tr 元素物件, 並附加剛才建立的 th, td 元素
+                       var row = $('<tr></tr>').append(th).append(td);
+                       
+                       // 將 tr 元素附加到表格中
+                       table.append(row);
+                    });
+                    
+                    // 將表格元素附加到文件中
+                    $('body').append(table);
+                  }
+        );
+    });
+    </script>
+</head>
+
+<body>
+    <h3>顯示HTTP表頭資訊</h3>
+</body>
+
+</html>

@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" 
+        content="width=device-width, initial-scale=1.0">
+  <title>Ch16-02</title>
+  <script src="https://maps.googleapis.com/maps/api/js"></script>
+  <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+  <script>
+    $(function(){
+      if(navigator.geolocation)
+        navigator.geolocation.getCurrentPosition(success);
+      
+      else
+        $('#mymap').text('您的裝置不支援地圖服務!');
+    });
+    
+    // 定位成功時呼叫的函式
+    function success(pos){
+      // 將參數中的資訊顯示在網頁中
+      $('#lat').text(pos.coords.latitude);
+      $('#lng').text(pos.coords.longitude);
+      $('#acc').text(pos.coords.accuracy);
+      
+      // 以參數中的經緯度建立經緯度物件
+      var myLatlng = {lat: pos.coords.latitude,
+                     lng: pos.coords.longitude};
+      
+      // 建立地圖物件
+      var mymap=new google.maps.Map($('#mymap').get(0), {
+           zoom: 15,
+           center: myLatlng 
+      });
+      
+      new google.maps.Marker({
+              position: myLatlng, // 標記的位置
+              map: mymap,         // 標記要放的地圖
+              icon: 'http://maps.google.com/mapfiles/kml/shapes/flag.png'});
+    }
+  </script>
+  </head>
+  <body>
+  <p>
+    緯度:<b><span id="lat">?????</span></b>
+    經度:<b><span id="lng">?????</span></b><br>
+    精確度:<b><span id="acc">?????</span>公尺</b>
+  </p>
+  <div id="mymap" style="width:100%;height:300px"></div>
+  </body>
+</html>

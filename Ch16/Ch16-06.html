@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+<head>
+  <meta name="viewport" 
+        content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <title>Ch16-06</title>
+  <link rel="stylesheet" 
+    href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+  <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+  <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+  <style>
+    a {margin-left:70%}
+	
+	img {width:30%; float:left; margin:0 5px}
+	@media screen and (max-device-width: 480px) {
+      img {width:50%; float:left; margin:0 5px}
+    }
+  </style>
+</head>
+<body>
+<!------------ 第 1 頁 ------------>
+<div id="page1" data-role="page">
+  <div data-role="header"><h1>Apple Watch 酷樂誌</h1></div>
+  <div data-role="content">
+    <img src="https://www.flag.com.tw/images/cover/middle/F5186.gif">    
+    <p>發揮 Apple Watch 120 % 功能, 與 iPhone 完美互動, 成為生活、工作最佳助手！</p>    
+  </div>
+  <div data-role="footer">
+    <a href="#page2" style="margin-left:70%">下一頁</a>
+  </div>
+</div>
+<!------------ 第 2 頁 ------------>
+<div id="page2" data-role="page">
+  <div data-role="header"><h2>
+	完全詳解! Android App 活用事典</h2></div>
+  <div data-role="content">
+    <img src="https://www.flag.com.tw/images/cover/middle/F5191.gif">
+    <p>精選 App + 深入活用教學, 讓手機成為工作、生活完美助手！</p>
+  </div>
+  <div data-role="footer">
+    <a href="#page1" style="margin-left:5%">上一頁</a>
+  </div>
+</div>
+</body>
+</html>

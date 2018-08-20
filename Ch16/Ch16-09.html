@@ -1,0 +1,86 @@
+<!doctype html>
+<html>
+<head>
+  <meta name="viewport" 
+        content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <title>Ch16-09</title>
+  <link rel="stylesheet" 
+    href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+  <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+  <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+  
+  <style>
+    img {width:30%; float:left; margin:0 5px}
+    a {margin-left:70%}
+    
+    @media screen and (max-device-width: 480px) {
+      img {width:50%; float:left; margin:0 5px}
+    }
+  </style>
+</head>
+<body>
+
+
+<div id="page1" data-role="page">
+  <div data-role="header">
+    <h1>Apple Watch 酷樂誌</h1>
+  </div>
+  <div data-role="content">
+    <img src="https://www.flag.com.tw/images/cover/middle/F5186.gif">        
+    <!-- 可摺疊內容 -->
+    <div data-role="collapsible" data-collapsed="false">
+      <h1>簡介</h1>
+      <p>發揮 Apple Watch 120 % 功能, 與 iPhone 完美互動, 成為生活、工作最佳助手！</p>    
+    </div>
+    <!-- 可摺疊內容 -->
+    <div data-role="collapsible" data-collapsed="true">
+      <h1>詳細資料</h1>
+      <p>Apple Watch 酷樂誌<br>
+        作者：柏青哥著<br>
+        書號：F5186<br>
+        建議售價：299 元<br>
+        色彩：全彩</p>    
+    </div>
+  </div>
+  <div data-role="footer" data-position="fixed">
+    <div data-role="navbar">
+      <ul>
+        <li><a href="#page1" class="ui-btn-active ui-state-persist">新書介紹1</a></li>
+        <li><a href="#page2">新書介紹2</a></li>
+        <li><a href="#about">關於</a></li>
+      </ul>
+    </div>
+  </div>
+</div>  
+<div id="page2" data-role="page">
+  <div data-role="header">
+    <h1>完全詳解! Android App 活用事典</h1>
+  </div>
+  <div data-role="content">
+    <img src="https://www.flag.com.tw/images/cover/middle/F5191.gif">
+    <p>精選 App + 深入活用教學, 讓手機成為工作、生活完美助手！</p>
+  </div>
+  <div data-role="footer" data-position="fixed">
+    <div data-role="navbar">
+      <ul>
+        <li><a href="#page1">新書介紹1</a></li>
+        <li><a href="#page2" class="ui-btn-active ui-state-persist">新書介紹2</a></li>
+        <li><a href="#about">關於</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+<!-- 『關於我』交談窗 -->
+<div id="about" data-role="dialog">
+  <div data-role="header">
+    <h1>關於我</h1>
+  </div>
+  <div data-role="content">
+  <p>版本：0.0.1</p>
+  <p>電話：(02)2396-3257</p>
+  <em>&nbsp; &copy; www.flag.com.tw</em>
+  </div>
+</div>
+</body>
+</html>

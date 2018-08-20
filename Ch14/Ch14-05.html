@@ -1,0 +1,130 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ch14-05</title>
+	<script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script>
+    // 天氣描述
+    var weaText =  {drizzle:'毛毛雨',
+                    showers:'陣雨',
+                    snow:'雪',
+                    foggy:'有霧',
+                    windy:'微風',
+                    cold:'寒冷', 
+                    cloudy:'陰', 
+                    "mostly cloudy":'多雲時晴',
+                    "oartly cloudy":'晴時多雲', 
+                    "mostly sunny":'晴時多雲', 
+                    clear:'晴',
+                    sunny:'晴',
+                    hot:'炎熱',
+                    "partly cloudy":'晴時多雲',
+                    "am showers":'短暫雨',
+                    "pm showers":'午後短暫雨',
+                    thundershowers:'雷陣雨',
+                    'pm thunderstorms':'午後雷雨',
+                    rain:'陰有雨'
+                    };
+    // 星期名稱
+    var weekDay =  {sun:'星期天',
+                    mon:'星期一',
+                    tue:'星期二',
+                    wed:'星期三',
+                    thu:'星期四',
+                    fri:'星期五', 
+                    sat:'星期六'
+                    };                
+    
+    // 自訂函式: 會下載天氣資訊並顯示在網頁中
+    function updateWeather(code){
+        // 由 $('#city').val() 取得目前所選城市的代碼, 並置入查詢的 URL 參數中 
+        $.get('https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20weather.forecast%20where%20woeid%3D'+$('#city').val()+'%20AND%20u%3D%22c%22',
+            function(xml){
+              // 找出天氣資料的 item 元素
+              $(xml).find('forecast').each(function(index){
+                  // 清空div內容, 並取得元素物件
+                  var div=$('.report:eq('+index+')').empty();
+                  
+                  // 建立'星期幾'的標題並加入div中
+                  $('<h3></h3>').text(weekDay[$(this).attr('day').toLowerCase()]).appendTo(div);
+                  
+                  // 建立氣象圖示並加入div中
+                  var filename = $(this).attr('code');
+                  $('<img>').attr('src',
+                                  'http://l.yimg.com/a/i/us/we/52/'+ filename +'.gif').appendTo(div);
+                  
+                  // 設定天氣預報文字: 有對應翻譯時, 加入中文; 否則加入原文
+                  if(weaText[$(this).attr('text').toLowerCase()])
+                    $('<h4></h4>').text(weaText[$(this).attr('text').toLowerCase()]).appendTo(div);
+                  else
+                    $('<h4></h4>').text( $(this).attr('text')).appendTo(div);
+                  
+                  // 加入高低溫資料
+                  $('<h4></h4>').text( $(this).attr('high')+'°C').addClass('highTemp').appendTo(div);
+                  $('<h4></h4>').text( $(this).attr('low')+'°C').addClass('lowTemp').appendTo(div);
+              });
+              
+              // 將英文的預報資料也加入網頁中
+              $('#eng').innerHtml=$(xml).find('description').text();
+            }
+        );
+    }
+    
+    // 文件 ready 後就進行下列工作
+    $(function(){        
+        // 1. 註冊 select 輸入欄位的 change 事件處理函式
+        $('#city').change(function(){
+          updateWeather();
+        });
+        
+        // 2. 觸發change事件, 立即更新天氣資訊
+        $('#city').change();
+    }); 
+    </script>
+    <style> 
+    div  {float:left; margin:0 5px; border:1px dashed gray}
+    .highTemp {color:red}   /* 高溫顯示紅色 */
+    .lowTemp  {color:blue}  /* 低溫顯示藍色 */
+    </style>
+</head>
+
+<body>
+<nav>
+<select id="city">
+<option value="2306179" selected>台北市</option>
+<option value="20070569">新北市</option>
+<option value="2298866">桃園</option>
+<option value="2306185">新竹</option>
+<option value="2306185">新竹市</option>
+<option value="2301128">苗栗</option>
+<option value="2306181">台中市</option>
+<option value="2306183">彰化</option>
+<option value="2306204">南投</option>
+<option value="2296315">嘉義</option>
+<option value="2296315">嘉義市</option>
+<option value="2306182">台南市</option>
+<option value="2306180">高雄市</option>
+<option value="2306189">屏東</option>
+<option value="2306188">基隆市</option>
+<option value="2306198">宜蘭</option>
+<option value="2306187">花蓮</option>
+<option value="2306190">台東</option>
+<option value="2347346">雲林</option>
+<option value="22695856">澎湖</option>
+<option value="28760735">金門</option>
+<option value="12470575">馬祖</option>
+</select>
+<span>的天氣預報</span>
+</nav>
+<!-- 用來放置以 AJAX 載入內容的區塊 -->
+<div class="report"></div>
+<div class="report"></div>
+<div class="report"></div>
+<div class="report"></div>
+<div class="report"></div>
+<div id="eng"></div>
+</body>
+
+</html>

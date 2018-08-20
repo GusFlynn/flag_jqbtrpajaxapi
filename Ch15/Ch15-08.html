@@ -1,0 +1,53 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" 
+       content="width=device-width, initial-scale=1.0">
+    <title>Ch15-08</title>
+    <script src="http://maps.googleapis.com/maps/api/js"></script>
+    <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script>
+    $(function(){
+      // 建立 Geocoder() 物件
+      var gc = new google.maps.Geocoder();
+      var mymap = new google.maps.Map($('#map').get(0), {
+                zoom: 15,
+                center: {lat:25.0479, lng:121.5170}
+      });
+            
+      // 設定查詢按鈕的事件處理函式
+      $('#query').click(function(){
+        // 取得使用者輸入的地址
+        var addr = $('#addr').val();
+        if(addr=='') return;
+        
+        // 用使用者輸入的地址查詢
+        gc.geocode({'address': addr}, function(result, status){
+          // 確認 OK
+          if(status == google.maps.GeocoderStatus.OK) {
+            var latlng = result[0].geometry.location;
+            // 將查詢結果設為地圖的中心
+            mymap.setCenter(latlng);
+            $('#lat').text(latlng.lat()); //顯示經度
+            $('#lng').text(latlng.lng()); //顯示緯度
+          }
+        }); 
+      });  // END of click()
+      
+      // 設定輸入欄位按鍵放開的事件處理函式
+      $('#addr').keyup(function(event){
+        if(event.keyCode == 13) // 若是按下/放開 Enter 鍵 
+          $('#query').click();
+      });  // END of keyup()
+    });
+    </script>
+    </head>
+    <body>    
+      <p><input id="addr" value="台北火車站">
+         <button id="query">查詢</button></p>
+      <p>緯度：<span id="lat">25.0479</span> 
+         經度：<span id="lng">121.5170</span></p>
+      <div id="map" style="width:400px; height:300px"></div>
+    </body>
+</html>

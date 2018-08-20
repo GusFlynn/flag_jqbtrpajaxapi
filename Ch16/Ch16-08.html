@@ -1,0 +1,80 @@
+<!doctype html>
+<html>
+<head>
+  <meta name="viewport" 
+        content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <title>Ch16-08</title>
+  <link rel="stylesheet" 
+    href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+  <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+  <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+  <style>
+    img {width:30%; float:left; margin:0 5px}
+    a {margin-left:70%}
+    
+	@media screen and (max-device-width: 480px) {
+      img {width:50%; float:left; margin:0 5px}
+    }
+  </style>
+</head>
+<body>
+
+
+<div id="page1" data-role="page">
+  <div data-role="header">
+    <h1>Apple Watch 酷樂誌</h1>
+  </div>
+  <div data-role="content">
+    <img src="https://www.flag.com.tw/images/cover/middle/F5186.gif">    
+    <p>發揮 Apple Watch 120 % 功能, 與 iPhone 完美互動, 成為生活、工作最佳助手！</p>    
+  </div>
+  <div data-role="footer" data-position="fixed">
+    <div data-role="navbar">
+      <ul>
+        <li><a href="#page1" data-icon="home" class="ui-btn-active ui-state-persist">新書介紹1</a></li>
+        <li><a href="#page2" data-icon="heart">新書介紹2</a></li>
+        <li><a href="#about" data-icon="info">關於我們</a></li>
+      </ul>
+    </div>
+  </div>
+</div>  
+<div id="page2" data-role="page">
+  <div data-role="header">
+    <h1>完全詳解! Android App 活用事典</h1>
+  </div>
+  <div data-role="content">
+    <img src="https://www.flag.com.tw/images/cover/middle/F5191.gif">
+    <p>精選 App + 深入活用教學, 讓手機成為工作、生活完美助手！</p>
+  </div>
+  <div data-role="footer" data-position="fixed">
+    <div data-role="navbar">
+      <ul>
+        <li><a href="#page1" data-icon="home">新書介紹1</a></li>
+        <li><a href="#page2" data-icon="heart" class="ui-btn-active  ui-state-persist">新書介紹2</a></li>
+        <li><a href="#about" data-icon="info">關於我們</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+<div id="about" data-role="page">
+  <div data-role="header">
+    <h1>關於我們</h1>
+  </div>
+  <div data-role="content">
+    電腦資訊科技日新月益,<br>
+    我們將提供精準、易懂的電腦書籍,<br>
+    與社會一同邁入新的文明、新的世界。
+  </div>
+  <div data-role="footer" data-position="fixed">
+    <div data-role="navbar">
+      <ul>
+        <li><a href="#page1" data-icon="home">新書介紹1</a></li>
+        <li><a href="#page2" data-icon="heart">新書介紹2</a></li>
+        <li><a href="#about" data-icon="info" class="ui-btn-active  ui-state-persist">關於我們</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+</body>
+</html>

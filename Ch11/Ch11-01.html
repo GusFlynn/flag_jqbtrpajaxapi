@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Ch11-01</title>
+    <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+</head>
+<body>
+<p>
+  書名：<input id="book" type="text">
+  <button>新增</button>
+</p>
+<p>現在有<span id="bookCount">0</span>本書<p>
+<ul id="list"></ul>
+<script type="text/javascript">
+    // 指定按鍵的 click 事件處理函式
+    $('button').click(function (){
+      
+      // 附加新的 li 子元素, 子元素內容為輸入欄位值
+      $('#list').append('<li>'+$('#book').val()+'</li>');
+      
+      $('#book').val(''); // 清空輸入欄位內容
+      
+      // 顯示 (更新) 清單項目的數量
+      $("#bookCount").text($('#list li').length);
+    });
+</script>
+</body>
+</html>

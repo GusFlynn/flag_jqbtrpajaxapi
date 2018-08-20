@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Ch12-10</title>
+    <link rel="stylesheet"
+      href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+    <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+</head>
+<body>
+  <button id="but">顯示交談窗</button>
+  <div id="myDialog" title="jQuery 交談窗">
+    <p>使用jQuery UI, 要先載入 jQuery 函式庫 JavaScript 程式, 
+    也要載入 jQuery UI 函式庫 JavaScript 程式和佈景主題 CSS。</p>
+  </div>
+  <script type="text/javascript">
+    // 建立交談窗, 並做初始設定
+    $('#myDialog').dialog({autoOpen:false,
+                           draggable:false, 
+                           modal:true,
+                           resizable:false,
+                           width: 360});
+    
+    // 設定按鈕事件, 按下時開啟交談窗
+    $('#but').click(function(){
+      $('#myDialog').dialog('open');
+    });
+  </script>
+</body>
+</html>

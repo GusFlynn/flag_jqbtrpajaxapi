@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Ch12-04</title>
+    <link rel="stylesheet"
+      href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+    <script src="http://code.jquery.com/jquery-2.1.4.js"></script>
+    <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+	
+    
+</head>
+<body>
+<p>請選擇日期：<input id="mydate"></p>
+<!-- 載入國際化支援程式 -->
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/i18n/jquery-ui-i18n.min.js"></script>
+<script type="text/javascript">
+$('#mydate').datepicker({
+                          firstDay: 1,              // 以週一為每週首日  
+						  numberOfMonths: 2,        // 顯示的月數
+						  showOtherMonths: true,    // 顯示其它月份日期
+						  selectOtherMonths: true,  // 可選其它月份日期
+						  changeMonth: true,        // 月份選單        
+						  changeYear: true,         // 年份選單 
+						  showAnim: 'fadeIn',       // 淡入效果
+						  duration: 750
+                         });
+</script>
+</body>
+</html>

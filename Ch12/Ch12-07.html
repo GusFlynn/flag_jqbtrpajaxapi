@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Ch12-07</title>
+    <link rel="stylesheet"
+      href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+    <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <style>#my_tabs{height:240px}</style>
+</head>
+<body>
+<div id="my_tabs"> <!-- 利用 div 建立標籤頁元件 -->
+  <ul> <!-- 利用 ul, li 建立換頁標籤, 以 a 建立各頁內容的 id -->
+  	<li><a href="#t1"><span>第 1 頁</span></a></li>
+  	<li><a href="#t2"><span>第 2 頁</span></a></li>
+  	<li><a href="#t3"><span>第 3 頁</span></a></li>
+  </ul>
+  <!-- 用 div 建立頁面內容, id 屬性需與上列 href 屬性對應 -->
+  <div id="t1">  <!-- 第 1 頁的內容 -->
+  	<h3>小橋</h3>      
+  </div>               
+  <div id="t2">  <!-- 第 2 頁的內容 -->
+  	<h3>流水</h3>
+  </div>
+  <div id="t3">  <!-- 第 3 頁的內容 -->
+  	<h3>人家</h3>
+  </div>
+</div>
+<script>
+$('#my_tabs').tabs();
+</script>
+</body>
+</html>

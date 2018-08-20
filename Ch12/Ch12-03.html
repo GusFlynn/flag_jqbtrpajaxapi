@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Ch12-03</title>
+    <link rel="stylesheet"
+      href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+    <script src="http://code.jquery.com/jquery-2.1.4.js"></script>
+    <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+</head>
+<body>
+  <table border="1">
+    <tr>
+    <td><!-- 固定顯示的月曆 -->
+      <div id="calendar"></div>
+    <td><!-- 用來幫助輸入日期的月曆 -->
+      <p>請選擇日期：<input id="popup_date"></p>
+    </tr>
+  </table>
+  <script type="text/javascript">
+  $('#calendar').datepicker();
+  $('#popup_date').datepicker({'dateFormat':'y-m-o'});
+  </script>
+</body>
+</html>

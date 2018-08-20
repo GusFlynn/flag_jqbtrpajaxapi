@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Ch09-10</title>
+    <script>
+    function addBook(){
+      console.log("開始執行 addBook()...");
+      
+      var list= document.getElementById("list");
+      console.log("目前的清單內容: " + list.innerHTML);
+      
+      var book= document.getElementById("book");
+      console.log("輸入的內容: " + book.value);
+      
+      list.innerHTML += "<li>" + book.value + "</li>";
+      console.log("addBook() 執行結束...");
+    }
+    </script>
+</head>
+<body>
+<p>
+  書名：<input id="book" type="text">
+  <button onclick="addBook()">新增</button>
+</p>
+<ul id="list"></ul>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Ch11-03</title>
+    <base href="http://www.flag.com.tw">
+    <script src="http://code.jquery.com/jquery-2.1.4.min.js">
+    </script>
+</head>
+<body>
+  <h2>新書通報</h2>
+  <ul>
+    <li><a href="/book/5105.asp?bokno=F5910">積木閱讀法 奇蹟 3 步驟 翻轉英文閱讀力!</a></li>
+    <li><a href="/book/5105.asp?bokno=F5166">完全詳解! 免費雲端工具活用事典</a></li>
+    <li><a href="/book/5105.asp?bokno=F5524">設計職人必備 Photoshop 精緻筆刷素材集</a></li>
+    <li><a href="/book/5105.asp?bokno=F5171">網路規劃與管理實務- 協助考取 CCNA 證照</a></li>
+  </ul>
+  <script>
+      // 設定 a 元素滑鼠進入事件處理器
+      $('a').mouseenter(function(){
+           // 將事件元素設為粗體
+           $(this).css('font-weight','bold');
+      });
+      
+      // 設定 a 元素滑鼠離開事件處理器
+      $('a').mouseleave(function(){
+           // 將事件元素設為一般字體 
+           $(this).css('font-weight','normal');
+      });
+  </script>  
+</body>
+</html>

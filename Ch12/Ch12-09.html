@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Ch12-09</title>
+    <link rel="stylesheet"
+      href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+    <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+</head>
+<body>
+  <p>歡迎使用jQuery UI！</p>
+  
+  <!-- 用 div 定義交談窗區塊 -->
+  <div id="myDialog" title="jQuery 交談窗">
+    <!-- div 的內容就是交談窗的內容 -->
+    <p>使用jQuery UI, 要先載入 jQuery 函式庫 JavaScript 程式, 
+      也要載入 jQuery UI 函式庫 JavaScript 程式和佈景主題 CSS。</p>
+  </div>
+  
+  <script>
+    $('#myDialog').dialog();  // 用指定的元素建立交談窗, 並立即顯示
+  </script>
+</body>
+</html>

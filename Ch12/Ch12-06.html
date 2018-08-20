@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Ch12-06</title>
+    <link rel="stylesheet"
+      href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+    <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <style>
+      #selection {margin:15px} 
+      .colorSlider {width:255px}
+      h3, p {
+         width: fit-content;
+         background-color:white
+      }
+    </style>
+</head>
+<body>
+  <p>自選背景色：</p>
+  <p>RED: <span id="rval" class="colorVal">255</span></p>
+  <div class="colorSlider"></div> <!-- 用 div 定義紅色的滑桿 -->
+  
+  <p>GREEN: <span id="gval" class="colorVal">255</span></p>
+  <div class="colorSlider"></div> <!-- 用 div 定義綠色的滑桿 --> 
+  
+  <p>BLUE: <span id="bval" class="colorVal">255</span></p>
+  <div class="colorSlider"></div> <!-- 用 div 定義藍色的滑桿 --> 
+  
+  <script>
+  // 3 個滑桿共用的 change 事件處理函式
+  function onchange(){
+      // 依序取得紅綠藍 3 色滑桿數值
+      var red   = $('.colorSlider:eq(0)').slider('value');
+      var green = $('.colorSlider:eq(1)').slider('value');
+      var blue  = $('.colorSlider:eq(2)').slider('value');
+      
+      // 將滑桿值顯示在對應的 span 元素
+      $('.colorVal:eq(0)').text(red);
+      $('.colorVal:eq(1)').text(green);
+      $('.colorVal:eq(2)').text(blue);
+      
+      // 更新 body 的背景顏色
+      $('body').css('backgroundColor',
+               // 以字串組合的方式, 將滑桿值組成 'rgb(r,g,b)' 字串
+               'rgb('+ red   + ',' + 
+                       green + ',' +
+                       blue  + ')' );
+  }
+  
+  $('.colorSlider').slider({        // 初始化 
+                      max:255,          // 最大值 255
+                      value:255,        // 初始值 255 
+                      change:onchange   // 設定事件處理函式
+                      });
+  </script>
+</body>
+</html>

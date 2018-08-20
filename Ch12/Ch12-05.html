@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Ch12-05</title>
+    <link rel="stylesheet"
+      href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+    <script src="http://code.jquery.com/jquery-2.1.4.js"></script>
+    <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <style>
+      #progbar  {width:250px} /*設定進度棒寬度*/
+      #progmsg  {width:250px; text-align:center} 
+    </style>
+</head>
+<body>
+<p id="progmsg">進度：<span id="prognum"></span>%</p>
+<div id="progbar"></div>
+<script>
+$('#progbar').progressbar({
+               value : 10,          // 設定初始進度
+               change: function() { // 進度改變時, 即更新顯示的數字
+                            $('#prognum').text(
+                              $(this).progressbar('value'));
+                       } 
+              });
+
+var timer=setInterval(   // 利用定時器模擬進行中工作
+        function(){
+                var barValue=$('#progbar').progressbar('value')+1;
+                $('#progbar').progressbar('value', barValue);
+                if( barValue==100)  // 已達 100 時, 即取消計時器
+                  clearInterval(timer); 
+                  },50);  // 每 0.05 秒呼叫一次 
+</script>
+</body>
+</html>
